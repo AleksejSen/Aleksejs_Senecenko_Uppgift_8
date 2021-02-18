@@ -1,4 +1,4 @@
-QT       += core gui
+    QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,7 +39,8 @@ unix:!macx: LIBS += -L$$PWD/lib/ -lpower
 INCLUDEPATH += $$PWD/.
 DEPENDPATH += $$PWD/.
 
+
 unix:!macx: LIBS += -L$$PWD/lib/ -lresistance
 
-INCLUDEPATH += $$PWD/.
-DEPENDPATH += $$PWD/.
+INCLUDEPATH += $$PWD/lib
+DEPENDPATH += $$PWD/lib

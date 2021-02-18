@@ -3,9 +3,12 @@
 #include "QString"
 #include "QMessageBox"
 
+extern "C" {
 #include "libcomponent.h"
 #include "libpower.h"
 #include "libresistance.h"
+}
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -68,7 +71,7 @@ void MainWindow::on_pushButton_Calc_clicked()
    if(ui->radioButton_S->isChecked())
    {
        /*calculate*/
-        _r_total_f= 0;// calc_resistance(3, 'S', _r_in_arr);
+        _r_total_f = calc_resistance(3, 'S', _r_in_arr);
 
        /*convert*/
        QString r_total = QString::number(_r_total_f);
@@ -80,7 +83,7 @@ void MainWindow::on_pushButton_Calc_clicked()
    if(ui->radioButton_P->isChecked())
    {
        /*calculate*/
-        _r_total_f=  0; //calc_resistance(3, 'P', _r_in_arr);
+        _r_total_f = calc_resistance(3, 'P', _r_in_arr);
        /*convert*/
        QString r_total = QString::number(_r_total_f);
        /*output*/
@@ -88,10 +91,19 @@ void MainWindow::on_pushButton_Calc_clicked()
    }
 
    /*Powr Calc*/
-   //_power = calc_power_r(_v_in, _r_total_f);
+   _power = calc_power_r(_v_in, _r_total_f);
    QString power = QString::number(_power);
    ui->lineEdit_Pow->setText(power);
 
+   /*E12*/
+   e_resistance(_r_total_f, _r_E12_arr);
+   QString e12_R1_str = QString::number(_r_E12_arr[0]);
+   QString e12_R2_str = QString::number(_r_E12_arr[1]);
+   QString e12_R3_str = QString::number(_r_E12_arr[2]);
+
+   ui->lineEdit_R1_E12->setText(e12_R1_str);
+   ui->lineEdit_R2_E12->setText(e12_R2_str);
+   ui->lineEdit_R3_E12->setText(e12_R3_str);
 
 }
 

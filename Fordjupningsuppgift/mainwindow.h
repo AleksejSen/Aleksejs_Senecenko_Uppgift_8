@@ -27,13 +27,14 @@ private:
 
 private:
  /*variables*/
-  float _r1_in = 0;
-  float _r2_in = 0;
-  float _r3_in = 0;
   float _v_in = 0;
 
   float _r_in_arr[3] ={0};
   float _r_total_f= 0;
   float _power = 0;
+
+  float _r_E12_arr[3] = {0};
+
+
 };
 #endif // MAINWINDOW_H
